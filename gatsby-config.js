@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Harry`,
-    siteUrl: `https://goharry.io`,
+    siteUrl: `https://goharry.io/`,
     description: "log",
     keywords: ["javascript", "node", "react"]
   },
