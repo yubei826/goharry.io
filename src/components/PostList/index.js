@@ -32,7 +32,7 @@ export default function PostList({ posts }) {
         return (
           <Post key={post.slug}>
             <Title>
-              <Link to={`/${post.slug}`} style={{ color: "#333" }}>
+              <Link to={post.slug} style={{ color: "#333" }}>
                 {post.title}
               </Link>
             </Title>
