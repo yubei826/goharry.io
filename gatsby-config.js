@@ -56,7 +56,6 @@ module.exports = {
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-feed`,
     `gatsby-plugin-catch-links`,
-    `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-styled-components`
   ]
