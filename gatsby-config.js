@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Harry`,
-    siteUrl: `https://goharry.io/`,
+    siteUrl: `https://goharry.io`,
     description: "log",
     keywords: ["javascript", "node", "react"]
   },
@@ -36,7 +36,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 700,
               linkImagesToOriginal: true,
               sizeByPixelDensity: false
             }
@@ -57,6 +57,7 @@ module.exports = {
     `gatsby-plugin-feed`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sitemap`
   ]
 };

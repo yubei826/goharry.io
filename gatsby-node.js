@@ -12,7 +12,8 @@ var crypto = require("crypto");
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   const { createNodeField } = boundActionCreators;
   if (node.internal.type !== "MarkdownRemark") return;
-  const slug = generateSlugHash(node.frontmatter.title);
+  const pathName = getFileName(node.fileAbsolutePath);
+  const slug = `/${generateSlugHash(pathName)}`;
   createNodeField({ node, name: "slug", value: slug });
   if (!node.frontmatter.tags) return;
   const tags = node.frontmatter.tags.map(tag =>
@@ -132,4 +133,8 @@ function generateSlugHash(slug) {
     .update(slug)
     .digest("hex")
     .slice(0, 10);
+}
+
+function getFileName(filePath) {
+  return filePath.split("/").slice(-1)[0];
 }
