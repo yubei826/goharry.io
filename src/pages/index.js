@@ -35,6 +35,15 @@ export default class IndexPageContainer extends Component {
     document.body.appendChild(this.script);
     this.script.src =
       "https://identity.netlify.com/v1/netlify-identity-widget.js";
+    this.script.onload = function() {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    };
   }
   componentWillUnmount() {
     document.body.removeChild(this.script);
