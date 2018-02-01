@@ -59,7 +59,7 @@ export default function ConcatFormPage() {
   return (
     <FormPage>
       <PageTitle>Concat</PageTitle>
-      <form name="contact" netlify>
+      <form name="contact" method="post" netlify>
         <input type="hidden" name="form-name" value="contact" />
         <p>
           <FormInput type="text" name="name" placeholder="Name" />
