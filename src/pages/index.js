@@ -33,7 +33,8 @@ export default class IndexPageContainer extends Component {
   componentDidMount() {
     this.script = document.createElement("script");
     document.body.appendChild(this.script);
-    script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+    this.script.src =
+      "https://identity.netlify.com/v1/netlify-identity-widget.js";
   }
   componentWillUnmount() {
     document.body.removeChild(this.script);
