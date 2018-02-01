@@ -58,7 +58,6 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-netlify-cms`
+    `gatsby-plugin-sitemap`
   ]
 };

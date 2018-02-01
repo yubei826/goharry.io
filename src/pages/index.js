@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Link from "gatsby-link";
 import PostList from "../components/PostList";
 import styled from "styled-components";
@@ -25,7 +25,23 @@ const IndexPage = ({ data: { allMarkdownRemark: { edges } } }) => {
   );
 };
 
-export default IndexPage;
+export default class IndexPageContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.script = undefined;
+  }
+  componentDidMount() {
+    this.script = document.createElement("script");
+    document.body.appendChild(this.script);
+    script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+  }
+  componentWillUnmount() {
+    document.body.removeChild(this.script);
+  }
+  render() {
+    return <IndexPage {...this.props} />;
+  }
+}
 
 export const pageQuery = graphql`
   query IndexQuery {
