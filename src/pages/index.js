@@ -43,6 +43,7 @@ export default class IndexPageContainer extends Component {
           });
         }
       });
+      window.netlifyIdentity.init();
     };
   }
   componentWillUnmount() {
