@@ -47,6 +47,7 @@ const NavLink = styled(Link)`
   align-items: center;
   font-size: 1rem;
   font-weight: 500;
+  margin-right: 1.5rem;
   text-transform: uppercase;
   &:hover {
     color: #663399;
@@ -146,6 +147,9 @@ class Header extends Component {
             <Menu>
               <NavLink to="/" exact activeClassName="active">
                 Home
+              </NavLink>
+              <NavLink to="/concat" activeClassName="active">
+                Concat
               </NavLink>
             </Menu>
             <Buttons>
