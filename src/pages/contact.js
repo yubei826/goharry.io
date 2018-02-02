@@ -103,6 +103,7 @@ export default class ContactFormPage extends Component {
     })
       .then(() => {
         alert("success");
+        this.clear();
       })
       .catch(error => alert(error));
   }
@@ -113,6 +114,10 @@ export default class ContactFormPage extends Component {
       return true;
     }
     return false;
+  }
+
+  clear() {
+    this.setState({ name: "", email: "", message: "" });
   }
 
   render() {
@@ -134,6 +139,7 @@ export default class ContactFormPage extends Component {
               placeholder="Name"
               value={this.state.name}
               onChange={this.valueChangeHandle.bind(this)}
+              required="required"
             />
           </p>
           <p>
@@ -144,6 +150,7 @@ export default class ContactFormPage extends Component {
               placeholder="Email"
               value={this.state.email}
               onChange={this.valueChangeHandle.bind(this)}
+              required="required"
             />
           </p>
           <p>
@@ -153,6 +160,7 @@ export default class ContactFormPage extends Component {
               placeholder="Message"
               value={this.state.message}
               onChange={this.valueChangeHandle.bind(this)}
+              required="required"
             />
           </p>
           <p>
