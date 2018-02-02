@@ -148,8 +148,8 @@ class Header extends Component {
               <NavLink to="/" exact activeClassName="active">
                 Home
               </NavLink>
-              <NavLink to="/concat" activeClassName="active">
-                Concat
+              <NavLink to="/contact" activeClassName="active">
+                contact
               </NavLink>
             </Menu>
             <Buttons>

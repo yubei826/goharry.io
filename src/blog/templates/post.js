@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./post.css";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
+import Disqus from "../../components/Disqus";
 
 const PostDate = styled.time`
   color: #999;
@@ -83,7 +84,7 @@ const Tag = styled(Link)`
 export default function Template({
   data // this prop will be injected by the GraphQL query below.
 }) {
-  const { markdownRemark } = data; // data.markdownRemark holds our post data
+  const { markdownRemark, site } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
   return (
     <Post>
@@ -104,6 +105,11 @@ export default function Template({
           </Tag>
         ))}
       </Tags>
+      <Disqus
+        title={frontmatter.title}
+        identifier={fields.slug.replace("/")}
+        shortname={site.siteMetadata.disqusShortName}
+      />
     </Post>
   );
 }
@@ -124,6 +130,11 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
+      }
+    }
+    site {
+      siteMetadata {
+        disqusShortName
       }
     }
   }

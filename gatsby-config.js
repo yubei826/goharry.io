@@ -3,7 +3,8 @@ module.exports = {
     title: `Harry`,
     siteUrl: `https://goharry.io`,
     description: "log",
-    keywords: ["javascript", "node", "react"]
+    keywords: ["javascript", "node", "react"],
+    disqusShortName: "devharry"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
