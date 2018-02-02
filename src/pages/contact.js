@@ -89,7 +89,7 @@ export default class ContactFormPage extends Component {
 
   submitHandle(e) {
     e.preventDefault();
-    if (!this.state.disabled) return;
+    if (this.state.disabled) return;
     const { name, email, message } = this.state;
     const data = {
       name,
@@ -132,6 +132,7 @@ export default class ContactFormPage extends Component {
               type="text"
               name="name"
               placeholder="Name"
+              value={this.state.name}
               onChange={this.valueChangeHandle.bind(this)}
             />
           </p>
@@ -141,6 +142,7 @@ export default class ContactFormPage extends Component {
               name="email"
               type="email"
               placeholder="Email"
+              value={this.state.email}
               onChange={this.valueChangeHandle.bind(this)}
             />
           </p>
@@ -149,6 +151,7 @@ export default class ContactFormPage extends Component {
               name="message"
               rows="8"
               placeholder="Message"
+              value={this.state.message}
               onChange={this.valueChangeHandle.bind(this)}
             />
           </p>
