@@ -31,6 +31,7 @@ export default class IndexPageContainer extends Component {
     this.script = undefined;
   }
   componentDidMount() {
+    if (window.netlifyIdentity) return;
     this.script = document.createElement("script");
     document.body.appendChild(this.script);
     this.script.src =
@@ -45,9 +46,6 @@ export default class IndexPageContainer extends Component {
       });
       window.netlifyIdentity.init();
     };
-  }
-  componentWillUnmount() {
-    document.body.removeChild(this.script);
   }
   render() {
     return <IndexPage {...this.props} />;
