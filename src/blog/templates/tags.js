@@ -15,7 +15,6 @@ export default function Tags({ pathContext }) {
           slug: node.fields.slug
         };
       });
-    console.log(postListData);
     return (
       <div>
         <h1>
