@@ -105,11 +105,11 @@ export default function Template({
           </Tag>
         ))}
       </Tags>
-      <Disqus
+      {/* <Disqus
         title={frontmatter.title}
         identifier={fields.slug.replace("/")}
         shortname={site.siteMetadata.disqusShortName}
-      />
+      /> */}
     </Post>
   );
 }
