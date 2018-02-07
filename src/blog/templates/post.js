@@ -3,7 +3,8 @@ import styled from "styled-components";
 import "./post.css";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-import Disqus from "../../components/Disqus";
+// import Disqus from "../../components/Disqus";
+import PostNavigation from "../../components/PostNavigation";
 
 const PostDate = styled.time`
   color: #999;
@@ -27,6 +28,7 @@ const Title = styled.h1`
 const PostContent = styled.div`
   p {
     line-height: 1.7;
+    word-break: break-word;
   }
   h1,
   h2,
@@ -64,6 +66,9 @@ const PostContent = styled.div`
     padding: 0 0.3rem;
     border-radius: 2px;
   }
+  img {
+    max-width: 100%;
+  }
 `;
 
 const Tags = styled.div`
@@ -71,18 +76,23 @@ const Tags = styled.div`
 `;
 
 const Tag = styled(Link)`
-  height: 28px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   padding: 0 1rem;
-  border-radius: 20px;
+  border-radius: 4px;
   background: #f0f3f3;
   color: #666;
   margin-right: 0.5rem;
+  &:hover {
+    background: #358ccb;
+    color: #fff;
+  }
 `;
 
-export default function Template({
-  data // this prop will be injected by the GraphQL query below.
+export default function PostTemplate({
+  data, // this prop will be injected by the GraphQL query below.
+  pathContext
 }) {
   const { markdownRemark, site } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
@@ -105,6 +115,7 @@ export default function Template({
           </Tag>
         ))}
       </Tags>
+      <PostNavigation {...pathContext} />
       {/* <Disqus
         title={frontmatter.title}
         identifier={fields.slug.replace("/")}

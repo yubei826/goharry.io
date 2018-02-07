@@ -66,13 +66,20 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 function createPosts(createPage, edges) {
   const blogPostTemplate = path.resolve(`src/blog/templates/post.js`);
 
-  edges.forEach(({ node }) => {
+  edges.forEach(({ node }, index) => {
+    let context = {
+      slug: node.fields.slug
+    };
+    if (index > 0) {
+      context.prev = edges[index - 1].node;
+    }
+    if (index < edges.length - 1) {
+      context.next = edges[index + 1].node;
+    }
     createPage({
       path: node.fields.slug,
       component: blogPostTemplate,
-      context: {
-        slug: node.fields.slug
-      } // additional data can be passed via context
+      context: context
     });
   });
 }
