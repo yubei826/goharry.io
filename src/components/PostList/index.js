@@ -8,6 +8,9 @@ const ListContainer = styled.div`
 
 const Post = styled.div`
   margin: 2rem 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const Title = styled.h1`
@@ -18,6 +21,13 @@ const Title = styled.h1`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+`;
+
+const PostLink = styled(Link)`
+  color: #333;
+  &:hover {
+    color: #418eb4;
+  }
 `;
 
 const Excerpt = styled.div`
@@ -32,9 +42,7 @@ export default function PostList({ posts }) {
         return (
           <Post key={post.slug}>
             <Title>
-              <Link to={post.slug} style={{ color: "#333" }}>
-                {post.title}
-              </Link>
+              <PostLink to={post.slug}>{post.title}</PostLink>
             </Title>
             <Excerpt>{post.excerpt}</Excerpt>
           </Post>

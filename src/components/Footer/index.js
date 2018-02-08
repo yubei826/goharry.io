@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "gatsby-link";
 
 const FooterComponent = styled.footer`
   border-top: solid 1px #ddd;
@@ -21,7 +22,10 @@ export default function Footer({ title }) {
     <FooterComponent>
       <div className="content">
         <FooterContent>
-          &copy;{year} {title} All rights reserved
+          &copy;{year} All rights reserved{" "}
+          <Link to="/about" style={{ paddingLeft: 5 }}>
+            about
+          </Link>
         </FooterContent>
       </div>
     </FooterComponent>

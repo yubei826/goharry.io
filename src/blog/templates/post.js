@@ -80,13 +80,15 @@ const Tag = styled(Link)`
   display: inline-flex;
   align-items: center;
   padding: 0 1rem;
-  border-radius: 4px;
+  border-radius: 2px;
   background: #f0f3f3;
   color: #666;
   margin-right: 0.5rem;
+  border: solid 1px #f0f3f3;
   &:hover {
-    background: #358ccb;
+    background: #418eb4;
     color: #fff;
+    border-color: #418eb4;
   }
 `;
 
