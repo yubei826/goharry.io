@@ -3713,6 +3713,12 @@ gatsby-plugin-feed@^1.3.16:
     pify "^3.0.0"
     rss "^1.2.2"
 
+gatsby-plugin-google-analytics@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-1.0.17.tgz#055d4189ad5a23df91e0cfa42992c9df66a72f06"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 gatsby-plugin-netlify-cms@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-1.0.5.tgz#6005675ba580242540164b5888ba79c555bdf825"

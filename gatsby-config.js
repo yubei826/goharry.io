@@ -54,6 +54,14 @@ module.exports = {
         showSpinner: true
       }
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-1655372-9",
+        // Setting this parameter is optional
+        anonymize: true
+      }
+    },
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-feed`,
     `gatsby-plugin-catch-links`,
