@@ -61,8 +61,8 @@ const PostContent = styled.div`
     font-size: 1.2rem;
   }
   code {
-    color: #418eb4;
-    background: #f6f8fb;
+    color: #607d8b;
+    background: rgba(236, 239, 241, 0.4);
     padding: 0 0.3rem;
     border-radius: 2px;
   }
@@ -81,14 +81,12 @@ const Tag = styled(Link)`
   align-items: center;
   padding: 0 1rem;
   border-radius: 2px;
-  background: #f0f3f3;
-  color: #666;
+  background: #eceff1;
+  color: #455a64;
   margin-right: 0.5rem;
-  border: solid 1px #f0f3f3;
   &:hover {
-    background: #418eb4;
+    background: #90a4ae;
     color: #fff;
-    border-color: #418eb4;
   }
 `;
 

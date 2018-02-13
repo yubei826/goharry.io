@@ -50,10 +50,10 @@ const NavLink = styled(Link)`
   margin-right: 1.5rem;
   text-transform: uppercase;
   &:hover {
-    color: #418eb4;
+    color: #607d8b;
   }
   &.${props => props.activeClassName} {
-    color: #418eb4;
+    color: #607d8b;
     position: relative;
     &:after {
       content: "";
@@ -62,7 +62,7 @@ const NavLink = styled(Link)`
       left: 0;
       right: 0;
       bottom: -1px;
-      background: #418eb4;
+      background: #607d8b;
     }
   }
 `;
@@ -80,12 +80,12 @@ const SubscribeButton = styled.a`
   padding: 0 0.5rem;
   border-radius: 3px;
   margin: 0;
-  border: 1px solid #418eb4;
-  color: #418eb4;
+  border: 1px solid #607d8b;
+  color: #607d8b;
   background: transparent;
   font-size: 14px;
   &:hover {
-    background: #418eb4;
+    background: #607d8b;
     color: #fff;
   }
 `;

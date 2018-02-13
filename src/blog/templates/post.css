@@ -38,8 +38,8 @@
    font-family: consolas,monaco,"Andale Mono",monospace;
    font-size: 14px;
    position: relative;
-   border-left: 5px solid #358ccb;
-   background-color:rgba(69, 142, 209, 0.04);
+   border-left: 5px solid #607D8B;
+   background-color:rgba(236, 239, 241, 0.4);
    /* background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.08) 50%); */
    background-size: 3em 3em;
    background-origin: content-box;

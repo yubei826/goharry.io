@@ -75,9 +75,9 @@ const Title = styled.h5`
   margin: 0;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #666;
+  color: #333;
   &:hover {
-    color: #358ccb;
+    color: #607d8b;
   }
 `;
 

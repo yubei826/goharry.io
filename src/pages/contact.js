@@ -19,7 +19,7 @@ const FormInput = styled.input`
   box-sizing: border-box;
   outline: 0;
   &:focus {
-    border-color: #418eb4;
+    border-color: #607d8b;
   }
 `;
 
@@ -33,7 +33,7 @@ const FormTextarea = styled.textarea`
   box-sizing: border-box;
   outline: 0;
   &:focus {
-    border-color: #418eb4;
+    border-color: #607d8b;
   }
 `;
 
@@ -44,13 +44,13 @@ const SubmitButton = styled.button`
   padding: 0 1rem;
   border-radius: 3px;
   margin: ;
-  border: 1px solid #418eb4;
-  color: #418eb4;
+  border: 1px solid #607d8b;
+  color: #607d8b;
   background: transparent;
   outline: 0;
   cursor: pointer;
   &:hover {
-    background: #418eb4;
+    background: #607d8b;
     color: #fff;
   }
   &[disabled] {

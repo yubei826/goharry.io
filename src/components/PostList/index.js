@@ -26,7 +26,7 @@ const Title = styled.h1`
 const PostLink = styled(Link)`
   color: #333;
   &:hover {
-    color: #418eb4;
+    color: #607d8b;
   }
 `;
 
