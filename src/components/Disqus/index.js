@@ -32,7 +32,7 @@ export default class DisqusThreadComponent extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.true) {
+    if (this.active) {
       window.removeEventListener("scroll", this.onScrollHandle);
     }
   }

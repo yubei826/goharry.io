@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "./post.css";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-// import Disqus from "../../components/Disqus";
+import Disqus from "../../components/Disqus";
 import PostNavigation from "../../components/PostNavigation";
 
 const PostDate = styled.time`
@@ -116,11 +116,11 @@ export default function PostTemplate({
         ))}
       </Tags>
       <PostNavigation {...pathContext} />
-      {/* <Disqus
+      <Disqus
         title={frontmatter.title}
         identifier={fields.slug.replace("/")}
         shortname={site.siteMetadata.disqusShortName}
-      /> */}
+      />
     </Post>
   );
 }
