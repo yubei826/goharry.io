@@ -97,31 +97,36 @@ export default function PostTemplate({
   const { markdownRemark, site } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
   return (
-    <Post>
-      <Helmet
-        title={frontmatter.title}
-        meta={[
-          { name: "description", content: excerpt },
-          { name: "keywords", content: fields.tags.map(t => t.name).join(", ") }
-        ]}
-      />
-      <PostDate>{frontmatter.date}</PostDate>
-      <Title>{frontmatter.title}</Title>
-      <PostContent dangerouslySetInnerHTML={{ __html: html }} />
-      <Tags>
-        {fields.tags.map(tag => (
-          <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
-            {tag.name}
-          </Tag>
-        ))}
-      </Tags>
-      <PostNavigation {...pathContext} />
-      <Disqus
-        title={frontmatter.title}
-        identifier={fields.slug.replace("/")}
-        shortname={site.siteMetadata.disqusShortName}
-      />
-    </Post>
+    <div className="content">
+      <Post>
+        <Helmet
+          title={frontmatter.title}
+          meta={[
+            { name: "description", content: excerpt },
+            {
+              name: "keywords",
+              content: fields.tags.map(t => t.name).join(", ")
+            }
+          ]}
+        />
+        <PostDate>{frontmatter.date}</PostDate>
+        <Title>{frontmatter.title}</Title>
+        <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+        <Tags>
+          {fields.tags.map(tag => (
+            <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
+              {tag.name}
+            </Tag>
+          ))}
+        </Tags>
+        <PostNavigation {...pathContext} />
+        <Disqus
+          title={frontmatter.title}
+          identifier={fields.slug.replace("/")}
+          shortname={site.siteMetadata.disqusShortName}
+        />
+      </Post>
+    </div>
   );
 }
 

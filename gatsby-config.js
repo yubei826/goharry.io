@@ -1,3 +1,35 @@
+const query = `{
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+          tags {
+            name
+          }
+        }
+        html
+        excerpt(pruneLength: 120)
+      }
+    }
+  }
+}`;
+
+const queries = [
+  {
+    query,
+    transformer: ({ data }) => {
+      console.log(data);
+      return data.allMarkdownRemark.edges.map(({ node }) =>
+        Object.assign({}, node, { objectID: node.fields.slug })
+      );
+    }
+  }
+];
+
 module.exports = {
   siteMetadata: {
     title: `Harry`,
@@ -60,6 +92,16 @@ module.exports = {
         trackingId: "UA-1655372-9",
         // Setting this parameter is optional
         anonymize: true
+      }
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: "ZO2N7VNXMJ",
+        apiKey: "989fe7d662be4adea2a53ff26b1b08f9",
+        indexName: "goharry.io",
+        queries,
+        chunkSize: 10000 // default: 1000
       }
     },
     `gatsby-plugin-remove-trailing-slashes`,

@@ -37,17 +37,19 @@ const Excerpt = styled.div`
 
 export default function PostList({ posts }) {
   return (
-    <ListContainer>
-      {posts.map(post => {
-        return (
-          <Post key={post.slug}>
-            <Title>
-              <PostLink to={post.slug}>{post.title}</PostLink>
-            </Title>
-            <Excerpt>{post.excerpt}</Excerpt>
-          </Post>
-        );
-      })}
-    </ListContainer>
+    <div className="content">
+      <ListContainer>
+        {posts.map(post => {
+          return (
+            <Post key={post.slug}>
+              <Title>
+                <PostLink to={post.slug}>{post.title}</PostLink>
+              </Title>
+              <Excerpt>{post.excerpt}</Excerpt>
+            </Post>
+          );
+        })}
+      </ListContainer>
+    </div>
   );
 }

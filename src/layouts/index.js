@@ -31,7 +31,7 @@ const TemplateWrapper = ({ children, data }) => {
           ]}
         />
         <Header {...siteMetadata} />
-        <div className="content">{children()}</div>
+        {children()}
       </Content>
       <Footer {...siteMetadata} />
     </Wrapper>

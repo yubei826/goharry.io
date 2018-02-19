@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "gatsby-link";
 import styled, { className, css } from "styled-components";
 import throttle from "lodash.throttle";
+import SearchBox, { SearchIcon } from "./search";
 
 const HEADER_HEIGHT = 52;
 
@@ -13,6 +14,7 @@ const HeaderWrapper = styled.div`
   top: 0;
   z-index: 9;
   width: 100%;
+  box-sizing: border-box;
   transform: translateY(-53px);
   transition: transform 0.1s;
   ${props =>
@@ -26,6 +28,13 @@ const HeaderContent = styled.div`
   display: flex;
   height: 52px;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  ${props =>
+    props.active &&
+    css`
+      opacity: 1;
+    `};
 `;
 
 const Brand = styled.h1`
@@ -72,7 +81,7 @@ const Buttons = styled.div`
   align-items: center;
 `;
 
-const SubscribeButton = styled.a`
+const Button = styled.button`
   height: 28px;
   color: #fff;
   display: inline-flex;
@@ -84,20 +93,67 @@ const SubscribeButton = styled.a`
   color: #607d8b;
   background: transparent;
   font-size: 14px;
+  box-sizing: border-box;
+  margin-left: 0.5rem;
+  cursor: pointer;
   &:hover {
     background: #607d8b;
     color: #fff;
   }
 `;
 
+const SubscribeButton = Button.withComponent("a");
+
+const HeaderSearchBox = styled.div`
+  height: 51px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: none;
+  ${props =>
+    props.active &&
+    css`
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.5s 0.1s;
+    `};
+`;
+
+const CancelButton = Button.extend`
+  opacity: 0;
+  transition: all 0.2s;
+  transform: scale(0);
+  ${props =>
+    props.active &&
+    css`
+      opacity: 1;
+      transform: scale(1);
+      transition: transform 0.2s 0.5s, opacity 0.2s 0.5s;
+    `};
+`;
+
+const SearchForm = styled.div`
+  flex: 1;
+`;
+
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: true
+      active: true,
+      activeSearch: false
     };
     this.scrollY = 0;
     this.onScrollHandler = throttle(this.scrollHandle.bind(this), 100);
+    this.searchBox = undefined;
   }
 
   componentDidMount() {
@@ -106,6 +162,14 @@ class Header extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScrollHandler);
+  }
+
+  toggleSearch() {
+    this.setState({ activeSearch: !this.state.activeSearch }, () => {
+      if (this.state.activeSearch) {
+        this.searchBox.focus();
+      }
+    });
   }
 
   scrollHandle() {
@@ -132,9 +196,8 @@ class Header extends Component {
   render() {
     return (
       <HeaderWrapper active={this.state.active}>
-        <div className="content">
-          <HeaderContent>
-            {/* <Brand>
+        <div className="content" style={{ position: "relative" }}>
+          {/* <Brand>
           <Link
             to="/"
             style={{
@@ -144,6 +207,7 @@ class Header extends Component {
             {title}
           </Link>
         </Brand> */}
+          <HeaderContent active={!this.state.activeSearch}>
             <Menu>
               <NavLink to="/" exact activeClassName="active">
                 Home
@@ -153,9 +217,24 @@ class Header extends Component {
               </NavLink>
             </Menu>
             <Buttons>
-              <SubscribeButton href="/rss.xml">subscribe</SubscribeButton>
+              <SearchIcon size="22" onClick={this.toggleSearch.bind(this)} />
+              <SubscribeButton href="/rss.xml">Subscribe</SubscribeButton>
             </Buttons>
           </HeaderContent>
+          <HeaderSearchBox active={this.state.activeSearch}>
+            <SearchForm>
+              <SearchBox
+                toggleSearch={this.toggleSearch.bind(this)}
+                ref={searchBox => (this.searchBox = searchBox)}
+              />
+            </SearchForm>
+            <CancelButton
+              active={this.state.activeSearch}
+              onClick={this.toggleSearch.bind(this)}
+            >
+              Cancel
+            </CancelButton>
+          </HeaderSearchBox>
         </div>
       </HeaderWrapper>
     );

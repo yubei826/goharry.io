@@ -122,54 +122,56 @@ export default class ContactFormPage extends Component {
 
   render() {
     return (
-      <FormPage>
-        <PageTitle>CONTACT</PageTitle>
-        <form
-          name="contact"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={this.submitHandle.bind(this)}
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p>
-            <FormInput
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={this.state.name}
-              onChange={this.valueChangeHandle.bind(this)}
-              required="required"
-            />
-          </p>
-          <p>
-            <FormInput
-              type="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.valueChangeHandle.bind(this)}
-              required="required"
-            />
-          </p>
-          <p>
-            <FormTextarea
-              name="message"
-              rows="8"
-              placeholder="Message"
-              value={this.state.message}
-              onChange={this.valueChangeHandle.bind(this)}
-              required="required"
-            />
-          </p>
-          <p>
-            <SubmitButton type="submit" disabled={this.state.disabled}>
-              Send
-            </SubmitButton>
-          </p>
-        </form>
-      </FormPage>
+      <div className="content">
+        <FormPage>
+          <PageTitle>CONTACT</PageTitle>
+          <form
+            name="contact"
+            method="post"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={this.submitHandle.bind(this)}
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p>
+              <FormInput
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={this.state.name}
+                onChange={this.valueChangeHandle.bind(this)}
+                required="required"
+              />
+            </p>
+            <p>
+              <FormInput
+                type="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.valueChangeHandle.bind(this)}
+                required="required"
+              />
+            </p>
+            <p>
+              <FormTextarea
+                name="message"
+                rows="8"
+                placeholder="Message"
+                value={this.state.message}
+                onChange={this.valueChangeHandle.bind(this)}
+                required="required"
+              />
+            </p>
+            <p>
+              <SubmitButton type="submit" disabled={this.state.disabled}>
+                Send
+              </SubmitButton>
+            </p>
+          </form>
+        </FormPage>
+      </div>
     );
   }
 }
