@@ -13,7 +13,6 @@
     "gatsby-plugin-sitemap": "^1.2.11",
     "gatsby-plugin-styled-components": "^2.0.5",
     "gatsby-remark-copy-linked-files": "^1.5.25",
-    "history": "^4.7.2",
     "lodash.throttle": "^4.1.1",
     "qs": "^6.5.1",
     "react-helmet": "^5.2.0",

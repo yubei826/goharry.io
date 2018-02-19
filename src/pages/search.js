@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { InstantSearch, SearchBox } from "react-instantsearch/dom";
 import SearchResults from "../components/Search";
 import qs from "qs";
-import createHistory from "history/createBrowserHistory";
+import { navigateTo } from "gatsby-link";
 import styled from "styled-components";
 import "../assets/search.css";
-
-const history = createHistory({ forceRefresh: false });
 
 const SearchFormBox = styled.div`
   background: #eceff1;
@@ -24,10 +22,6 @@ export default class SearchPage extends Component {
     this.query = query;
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
-
   changeHandle({ target }) {
     const value = target.value;
     this.query = value;
@@ -37,7 +31,7 @@ export default class SearchPage extends Component {
     const { location } = this.props;
     const { search } = location;
     const queries = qs.parse(search.slice(1));
-    history.push({
+    navigateTo({
       pathname: location.pathname,
       search: "?" + qs.stringify({ ...queries, q: this.query })
     });

@@ -22,7 +22,6 @@ const queries = [
   {
     query,
     transformer: ({ data }) => {
-      console.log(data);
       return data.allMarkdownRemark.edges.map(({ node }) =>
         Object.assign({}, node, { objectID: node.fields.slug })
       );
