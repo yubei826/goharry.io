@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-  padding-top: 53px;
+  padding-top: 52px;
   flex: 1;
 `;
 
