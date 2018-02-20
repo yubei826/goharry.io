@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const TagHeader = styled.div`
   background: #eceff1;
-  padding: 3rem 0;
+  padding: 2rem 0;
 `;
 
 export default function Tags({ pathContext }) {

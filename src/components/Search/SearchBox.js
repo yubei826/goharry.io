@@ -74,6 +74,7 @@ export default class SearchBox extends PureComponent {
 
   submitHandle(e) {
     e.preventDefault();
+    // if (!this.props.isSearchStalled) return;
     let { query } = this.state;
     query = query.trim();
     if (!query || query === this.lastQuery) return;

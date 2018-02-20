@@ -35,19 +35,19 @@ const RefreshControlProps = {
 };
 
 const indicator = keyframes`
-  from: {
-    transform: 'rotate(0deg)',
-  },
-  to: {
-    transform: 'rotate(360deg)',
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 `;
 
 const LoadingIcon = styled.svg`
-  animationduration: "1s";
-  animationiterationcount: "infinite";
-  animationname: ${indicator};
-  animationtimingfunction: "steps(12)";
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: ${indicator};
+  animation-timing-function: steps(12);
 `;
 
 export default class LoadingIndicator extends React.Component {

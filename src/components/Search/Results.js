@@ -4,11 +4,15 @@ import styled, { css } from "styled-components";
 import LoadingIndicator from "../LoadingIndicator";
 import Link from "gatsby-link";
 
+const SearchResultsWrapper = styled.div`
+  flex: 1;
+`;
+
 const SearchResultsContainer = styled.div`
   position: relative;
-  flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 50vh;
 `;
 
 export default function SearchResults({
@@ -19,19 +23,18 @@ export default function SearchResults({
   error
 }) {
   return (
-    <div
-      className="content"
-      style={{ flex: 1, display: "flex", flexDirection: "column" }}
-    >
-      <SearchResultsContainer>
-        <Results
-          searchResults={searchResults}
-          searchState={searchState}
-          error={error}
-        />
-        <SearchLoadingIndicator active={searching} />
-      </SearchResultsContainer>
-    </div>
+    <SearchResultsWrapper>
+      <div className="content">
+        <SearchResultsContainer>
+          <Results
+            searchResults={searchResults}
+            searchState={searchState}
+            error={error}
+          />
+          <SearchLoadingIndicator active={searching} />
+        </SearchResultsContainer>
+      </div>
+    </SearchResultsWrapper>
   );
 }
 
