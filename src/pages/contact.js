@@ -122,8 +122,8 @@ export default class ContactFormPage extends Component {
 
   render() {
     return (
-      <div className="content">
-        <FormPage>
+      <FormPage>
+        <div className="content">
           <PageTitle>CONTACT</PageTitle>
           <form
             name="contact"
@@ -170,8 +170,8 @@ export default class ContactFormPage extends Component {
               </SubmitButton>
             </p>
           </form>
-        </FormPage>
-      </div>
+        </div>
+      </FormPage>
     );
   }
 }

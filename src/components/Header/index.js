@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Link from "gatsby-link";
 import styled, { className, css } from "styled-components";
 import throttle from "lodash.throttle";
-import SearchBox, { SearchIcon } from "./search";
+import SearchBox from "./search";
+import { SearchIcon } from "../Icons";
 
 const HEADER_HEIGHT = 52;
 
@@ -219,7 +220,11 @@ class Header extends Component {
               </NavLink>
             </Menu>
             <Buttons>
-              <SearchIcon size="22" onClick={this.toggleSearch.bind(this)} />
+              <SearchIcon
+                size={22}
+                color="#607d8b"
+                onClick={this.toggleSearch.bind(this)}
+              />
               <SubscribeButton href="/rss.xml">Subscribe</SubscribeButton>
             </Buttons>
           </HeaderContent>

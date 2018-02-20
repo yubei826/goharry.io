@@ -1,6 +1,6 @@
 .ais-SearchBox__wrapper {
   background: #fff;
-  border-radius: 3px;
+  border-radius: 2px;
   height: 44px;
   display: flex;
   padding-right: 1rem;
@@ -11,6 +11,7 @@
   padding: 0 1rem;
   border: none;
   outline: 0;
+  background: transparent;
 }
 .ais-SearchBox__submit {
   background: transparent;
