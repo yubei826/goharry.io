@@ -3,7 +3,7 @@ import { Highlight, SearchBox, PoweredBy } from "react-instantsearch/dom";
 import { connectStateResults } from "react-instantsearch/connectors";
 import Link from "gatsby-link";
 import styled, { css } from "styled-components";
-import LoadingIndicator from "react-loading-indicator";
+import LoadingIndicator from "../LoadingIndicator";
 
 export default function SearchResult({ query, onChange, onReset }) {
   return (
