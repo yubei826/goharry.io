@@ -49,7 +49,7 @@ export default class SearchPage extends Component {
             <SearchBox
               defaultRefinement={this.state.query}
               searchAsYouType={false}
-              autoFocus={false}
+              autoFocus={true}
               onSubmit={this.submitHandle.bind(this)}
               onChange={this.changeHandle.bind(this)}
             />
