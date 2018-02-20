@@ -117,13 +117,15 @@ const HeaderSearchBox = styled.div`
   background: #fff;
   opacity: 0;
   transform: translateX(100%);
+  visibility: hidden;
   transition: none;
   ${props =>
     props.active &&
     css`
       opacity: 1;
+      visibility: visible;
       transform: translateX(0);
-      transition: all 0.5s 0.1s;
+      transition: opacity 0.5s 0.1s, transform 0.5s 0.1s;
     `};
 `;
 
