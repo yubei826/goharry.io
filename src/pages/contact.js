@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-const FormPage = styled.div`
-  padding-top: 1.5rem;
-`;
-
-const PageTitle = styled.h1`
-  margin-top: 0;
-`;
+import Button from "../components/Button";
+import Page from "../components/Page";
 
 const FormInput = styled.input`
   background: #fff;
@@ -34,32 +28,6 @@ const FormTextarea = styled.textarea`
   outline: 0;
   &:focus {
     border-color: #607d8b;
-  }
-`;
-
-const SubmitButton = styled.button`
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 1rem;
-  border-radius: 3px;
-  margin: ;
-  border: 1px solid #607d8b;
-  color: #607d8b;
-  background: transparent;
-  outline: 0;
-  cursor: pointer;
-  &:hover {
-    background: #607d8b;
-    color: #fff;
-  }
-  &[disabled] {
-    color: #999;
-    border-color: #999;
-    &:hover {
-      background: transparent;
-      color: #999;
-    }
   }
 `;
 
@@ -122,56 +90,53 @@ export default class ContactFormPage extends Component {
 
   render() {
     return (
-      <FormPage>
-        <div className="content">
-          <PageTitle>CONTACT</PageTitle>
-          <form
-            name="contact"
-            method="post"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            onSubmit={this.submitHandle.bind(this)}
-          >
-            <input type="hidden" name="form-name" value="contact" />
-            <p>
-              <FormInput
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={this.state.name}
-                onChange={this.valueChangeHandle.bind(this)}
-                required="required"
-              />
-            </p>
-            <p>
-              <FormInput
-                type="email"
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.valueChangeHandle.bind(this)}
-                required="required"
-              />
-            </p>
-            <p>
-              <FormTextarea
-                name="message"
-                rows="8"
-                placeholder="Message"
-                value={this.state.message}
-                onChange={this.valueChangeHandle.bind(this)}
-                required="required"
-              />
-            </p>
-            <p>
-              <SubmitButton type="submit" disabled={this.state.disabled}>
-                Send
-              </SubmitButton>
-            </p>
-          </form>
-        </div>
-      </FormPage>
+      <Page title="CONTACT">
+        <form
+          name="contact"
+          method="post"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={this.submitHandle.bind(this)}
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p>
+            <FormInput
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={this.state.name}
+              onChange={this.valueChangeHandle.bind(this)}
+              required="required"
+            />
+          </p>
+          <p>
+            <FormInput
+              type="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={this.valueChangeHandle.bind(this)}
+              required="required"
+            />
+          </p>
+          <p>
+            <FormTextarea
+              name="message"
+              rows="8"
+              placeholder="Message"
+              value={this.state.message}
+              onChange={this.valueChangeHandle.bind(this)}
+              required="required"
+            />
+          </p>
+          <p>
+            <Button size="large" type="submit" disabled={this.state.disabled}>
+              Send
+            </Button>
+          </p>
+        </form>
+      </Page>
     );
   }
 }

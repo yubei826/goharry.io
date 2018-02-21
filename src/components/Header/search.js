@@ -12,8 +12,6 @@ const SearchInputBox = styled.div`
 `;
 
 const SearchInput = styled.input`
-  height: 18px;
-  width: 3rem;
   border: none;
   background: transparent;
   flex: 1;

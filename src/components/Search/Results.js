@@ -3,6 +3,8 @@ import { Highlight } from "react-instantsearch/dom";
 import styled, { css } from "styled-components";
 import LoadingIndicator from "../LoadingIndicator";
 import Link from "gatsby-link";
+import Post from "../PostList/Post";
+import Content from "../Content";
 
 const SearchResultsWrapper = styled.div`
   flex: 1;
@@ -24,7 +26,7 @@ export default function SearchResults({
 }) {
   return (
     <SearchResultsWrapper>
-      <div className="content">
+      <Content>
         <SearchResultsContainer>
           <Results
             searchResults={searchResults}
@@ -33,7 +35,7 @@ export default function SearchResults({
           />
           <SearchLoadingIndicator active={searching} />
         </SearchResultsContainer>
-      </div>
+      </Content>
     </SearchResultsWrapper>
   );
 }
@@ -46,7 +48,7 @@ function Results({ searchResults, searchState, error }) {
     return (
       <div>
         {searchResults.hits.map(hit => (
-          <Post hit={hit} key={hit.fields.slug} />
+          <SearchPost hit={hit} key={hit.fields.slug} />
         ))}
       </div>
     );
@@ -61,52 +63,13 @@ function Results({ searchResults, searchState, error }) {
   return null;
 }
 
-const PostTitle = styled.h1`
-  font-weight: 500;
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-  text-transform: uppercase;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  a {
-    color: #333;
-    &:hover {
-      color: #607d8b;
-    }
-    em {
-      color: #f57f17;
-      font-style: normal;
-    }
-  }
-`;
-
-const Excerpt = styled.div`
-  color: #999;
-  line-height: 1.7;
-  em {
-    color: #f57f17;
-    font-style: normal;
-  }
-`;
-
-const SearchPost = styled.div`
-  margin: 2rem 0;
-`;
-
-function Post({ hit, onClose }) {
-  return (
-    <SearchPost>
-      <PostTitle>
-        <Link to={hit.fields.slug}>
-          <Highlight attributeName="frontmatter.title" hit={hit} />
-        </Link>
-      </PostTitle>
-      <Excerpt>
-        <Highlight attributeName="excerpt" hit={hit} />
-      </Excerpt>
-    </SearchPost>
-  );
+function SearchPost({ hit }) {
+  const post = {
+    title: <Highlight attributeName="frontmatter.title" hit={hit} />,
+    slug: hit.fields.slug,
+    excerpt: <Highlight attributeName="excerpt" hit={hit} />
+  };
+  return <Post post={post} />;
 }
 
 const LoadingIndicatorLayout = styled.div`

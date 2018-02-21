@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Content from "../Content";
 
 const PoweredByIcon = styled.div`
   width: 120px;
@@ -11,7 +12,7 @@ const PoweredByBox = styled.div`
 `;
 
 export default ({ url }) => (
-  <div className="content">
+  <Content>
     <PoweredByBox>
       <PoweredByIcon>
         <a href={url} target="_blank">
@@ -51,5 +52,5 @@ export default ({ url }) => (
         </a>
       </PoweredByIcon>
     </PoweredByBox>
-  </div>
+  </Content>
 );

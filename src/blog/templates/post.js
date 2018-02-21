@@ -5,6 +5,9 @@ import Link from "gatsby-link";
 import Helmet from "react-helmet";
 import Disqus from "../../components/Disqus";
 import PostNavigation from "../../components/PostNavigation";
+import MasterHeader from "../../components/MasterHeader";
+import Content from "../../components/Content";
+import Button from "../../components/Button";
 
 const PostDate = styled.time`
   color: #999;
@@ -12,7 +15,7 @@ const PostDate = styled.time`
 `;
 
 const Post = styled.div`
-  padding-top: 2rem;
+  padding-top: 0;
 `;
 
 const Title = styled.h1`
@@ -26,6 +29,7 @@ const Title = styled.h1`
 `;
 
 const PostContent = styled.div`
+  padding-top: 1rem;
   p {
     line-height: 1.7;
     word-break: break-word;
@@ -72,22 +76,11 @@ const PostContent = styled.div`
 `;
 
 const Tags = styled.div`
-  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 `;
 
-const Tag = styled(Link)`
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 1rem;
-  border-radius: 2px;
-  background: #eceff1;
-  color: #455a64;
+const Tag = styled(Button)`
   margin-right: 0.5rem;
-  &:hover {
-    background: #90a4ae;
-    color: #fff;
-  }
 `;
 
 export default function PostTemplate({
@@ -97,38 +90,38 @@ export default function PostTemplate({
   const { markdownRemark, site } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
   return (
-    <div>
-      <div className="content">
-        <Post>
-          <Helmet
-            title={frontmatter.title}
-            meta={[
-              { name: "description", content: excerpt },
-              {
-                name: "keywords",
-                content: fields.tags.map(t => t.name).join(", ")
-              }
-            ]}
-          />
-          <PostDate>{frontmatter.date}</PostDate>
-          <Title>{frontmatter.title}</Title>
-          <PostContent dangerouslySetInnerHTML={{ __html: html }} />
-          <Tags>
-            {fields.tags.map(tag => (
-              <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
-                {tag.name}
-              </Tag>
-            ))}
-          </Tags>
-          <PostNavigation {...pathContext} />
-          <Disqus
-            title={frontmatter.title}
-            identifier={fields.slug.replace("/")}
-            shortname={site.siteMetadata.disqusShortName}
-          />
-        </Post>
-      </div>
-    </div>
+    <Post>
+      <Helmet
+        title={frontmatter.title}
+        meta={[
+          { name: "description", content: excerpt },
+          {
+            name: "keywords",
+            content: fields.tags.map(t => t.name).join(", ")
+          }
+        ]}
+      />
+      <MasterHeader>
+        <Tags>
+          {fields.tags.map(tag => (
+            <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
+              {tag.name}
+            </Tag>
+          ))}
+        </Tags>
+        <Title>{frontmatter.title}</Title>
+        <PostDate>{frontmatter.date}</PostDate>
+      </MasterHeader>
+      <Content>
+        <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+        <PostNavigation {...pathContext} />
+        <Disqus
+          title={frontmatter.title}
+          identifier={fields.slug.replace("/")}
+          shortname={site.siteMetadata.disqusShortName}
+        />
+      </Content>
+    </Post>
   );
 }
 

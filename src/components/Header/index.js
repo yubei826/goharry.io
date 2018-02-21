@@ -4,6 +4,7 @@ import styled, { className, css } from "styled-components";
 import throttle from "lodash.throttle";
 import SearchBox from "./search";
 import { SearchIcon } from "../Icons";
+import Button, { ButtonComponent } from "../Button";
 
 const HEADER_HEIGHT = 52;
 
@@ -82,29 +83,6 @@ const Buttons = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button`
-  height: 28px;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.5rem;
-  border-radius: 3px;
-  margin: 0;
-  border: 1px solid #607d8b;
-  color: #607d8b;
-  background: transparent;
-  font-size: 14px;
-  box-sizing: border-box;
-  margin-left: 0.5rem;
-  cursor: pointer;
-  &:hover {
-    background: #607d8b;
-    color: #fff;
-  }
-`;
-
-const SubscribeButton = Button.withComponent("a");
-
 const HeaderSearchBox = styled.div`
   height: 51px;
   display: flex;
@@ -130,7 +108,7 @@ const HeaderSearchBox = styled.div`
     `};
 `;
 
-const CancelButton = Button.extend`
+const CancelButton = styled(Button)`
   opacity: 0;
   transition: all 0.2s;
   transform: scale(0);
@@ -225,7 +203,9 @@ class Header extends Component {
                 color="#607d8b"
                 onClick={this.toggleSearch.bind(this)}
               />
-              <SubscribeButton href="/rss.xml">Subscribe</SubscribeButton>
+              <Button href="/rss.xml" style={{ marginLeft: "0.5rem" }}>
+                subscribe
+              </Button>
             </Buttons>
           </HeaderContent>
           <HeaderSearchBox active={this.state.activeSearch}>
@@ -239,7 +219,7 @@ class Header extends Component {
               active={this.state.activeSearch}
               onClick={this.toggleSearch.bind(this)}
             >
-              Cancel
+              cancel
             </CancelButton>
           </HeaderSearchBox>
         </div>

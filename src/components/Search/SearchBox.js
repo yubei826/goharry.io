@@ -3,6 +3,7 @@ import { navigateTo } from "gatsby-link";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { SearchIcon, CancelIcon } from "../Icons";
+import Content from "../Content";
 
 const SearchBoxContainer = styled.div`
   background: #eceff1;
@@ -22,7 +23,6 @@ const SearchInputBox = styled.div`
 const SearchInput = styled.input`
   flex: 1;
   padding: 0 1rem;
-  height: 1.2rem;
   font-size: 1.1rem;
   border: none;
   outline: 0;
@@ -93,7 +93,7 @@ export default class SearchBox extends PureComponent {
     query = query.trim();
     return (
       <SearchBoxContainer>
-        <div className="content">
+        <Content>
           <form onSubmit={this.submitHandle.bind(this)}>
             <SearchInputBox>
               <SearchInput
@@ -121,7 +121,7 @@ export default class SearchBox extends PureComponent {
               </IconButton>
             </SearchInputBox>
           </form>
-        </div>
+        </Content>
       </SearchBoxContainer>
     );
   }
