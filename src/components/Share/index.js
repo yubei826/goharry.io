@@ -30,6 +30,7 @@ export default class Share extends PureComponent {
 
   share() {
     if (navigator.share) {
+      const { url, title } = this.props;
       navigator.share({
         url,
         title,
