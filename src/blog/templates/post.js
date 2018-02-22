@@ -8,6 +8,7 @@ import PostNavigation from "../../components/PostNavigation";
 import MasterHeader from "../../components/MasterHeader";
 import Content from "../../components/Content";
 import Button from "../../components/Button";
+import Share from "../../components/Share";
 
 const PostDate = styled.time`
   color: #999;
@@ -75,8 +76,14 @@ const PostContent = styled.div`
   }
 `;
 
+const PostMeta = styled.div`
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+`;
+
 const Tags = styled.div`
-  padding-bottom: 0.5rem;
+  flex: 1;
 `;
 
 const Tag = styled(Button)`
@@ -85,7 +92,8 @@ const Tag = styled(Button)`
 
 export default function PostTemplate({
   data, // this prop will be injected by the GraphQL query below.
-  pathContext
+  pathContext,
+  ...props
 }) {
   const { markdownRemark, site } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
@@ -102,18 +110,24 @@ export default function PostTemplate({
         ]}
       />
       <MasterHeader>
-        <Tags>
-          {fields.tags.map(tag => (
-            <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
-              {tag.name}
-            </Tag>
-          ))}
-        </Tags>
         <Title>{frontmatter.title}</Title>
         <PostDate>{frontmatter.date}</PostDate>
       </MasterHeader>
       <Content>
         <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+        <PostMeta>
+          <Tags>
+            {fields.tags.map(tag => (
+              <Tag key={tag.slug} to={`/tags/${tag.slug}`}>
+                {tag.name}
+              </Tag>
+            ))}
+          </Tags>
+          <Share
+            url={site.siteMetadata.siteUrl + fields.slug}
+            title={frontmatter.title}
+          />
+        </PostMeta>
         <PostNavigation {...pathContext} />
         <Disqus
           title={frontmatter.title}
@@ -138,7 +152,7 @@ export const pageQuery = graphql`
         }
       }
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY-MM-DD")
         path
         title
       }
@@ -146,6 +160,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         disqusShortName
+        siteUrl
       }
     }
   }
