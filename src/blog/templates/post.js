@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "./post.css";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-// import Disqus from "../../components/Disqus";
+import Disqus from "../../components/Disqus";
 import PostNavigation from "../../components/PostNavigation";
 import MasterHeader from "../../components/MasterHeader";
 import Content from "../../components/Content";
@@ -133,13 +133,13 @@ export default function PostTemplate({
             title={frontmatter.title}
           />
         </PostMeta>
-        {/* <Disqus
+        <SubscribeForm />
+        <PostNavigation {...pathContext} />
+        <Disqus
           title={frontmatter.title}
           identifier={fields.slug.replace("/")}
           shortname={site.siteMetadata.disqusShortName}
-        /> */}
-        <SubscribeForm />
-        <PostNavigation {...pathContext} />
+        />
       </Content>
     </Post>
   );
