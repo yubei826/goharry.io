@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import jsonp from "jsonp";
 import styled from "styled-components";
+import Enum from "enum";
 import MasterHeader from "../MasterHeader";
 import Button from "../Button";
 
@@ -47,13 +48,16 @@ const SubscribeTip = styled.div`
   font-size: 0.9rem;
 `;
 
+const STATUS = new Enum(["idle", "pending", "fail", "success"]);
+
 export default class SubscribeForm extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      status: "idle",
-      err: ""
+      status: STATUS.idle,
+      err: "",
+      message: ""
     };
     this.cancelRequest = undefined;
   }
@@ -63,6 +67,10 @@ export default class SubscribeForm extends PureComponent {
   }
 
   emailChangeHandle({ target }) {
+    const idle = STATUS.idle.value;
+    if (this.state.status !== idle) {
+      this.setState({ status: idle });
+    }
     this.setState({ email: target.value });
   }
 
@@ -71,23 +79,23 @@ export default class SubscribeForm extends PureComponent {
     const { target } = event;
     const { email } = this.state;
     if (!isValidEmailAddress(email)) return;
-    this.setState({ status: "pending" });
+    const pending = STATUS.pending.value;
+    const fail = STATUS.fail.value;
+    const success = STATUS.success.value;
+    this.setState({ status: pending });
     const url = target.action;
     this.cancelRequest = jsonp(url, { param: "c" }, (err, data) => {
       if (err) {
-        this.setState({ err: err.message, status: "error" });
+        this.setState({ err: err.message, status: fail });
         return;
       }
-      if (data.result === "error") {
-        this.setState({ err: data.msg, status: "error" });
-        return;
-      }
-      this.setState({ status: "success" });
+      this.setState({ status: success, message: data.msg });
     });
   }
 
   render() {
     const { email, status } = this.state;
+    const pending = STATUS.pending.value;
     return (
       <Container>
         <form
@@ -107,7 +115,7 @@ export default class SubscribeForm extends PureComponent {
             <Button
               size="large"
               disabled={!isValidEmailAddress(email)}
-              processing={status === "pending"}
+              processing={status === pending}
             >
               subscribe
             </Button>
@@ -128,12 +136,18 @@ function isValidEmailAddress(email) {
   );
 }
 
-function SubScribeTipText({ status, err }) {
-  if (err) {
-    return <span dangerouslySetInnerHTML={{ __html: this.state.err }} />;
+function SubScribeTipText({ status, err, message }) {
+  const fail = STATUS.fail.value;
+  const idle = STATUS.idle.value;
+  const pending = STATUS.pending.value;
+  if (status === pending) {
+    return <span>Processing...</span>;
   }
-  if (status === "success") {
-    return <span>Done</span>;
+  if (status === fail && err) {
+    return <span>{err}</span>;
+  }
+  if (status !== idle && message) {
+    return <span dangerouslySetInnerHTML={{ __html: message }} />;
   }
   return <span>We will keep your email address secret</span>;
 }
