@@ -111,6 +111,7 @@ const HeaderSearchBox = styled.div`
 const CancelButton = styled(Button)`
   opacity: 0;
   transition: all 0.2s;
+  height: 28px;
   transform: scale(0);
   ${props =>
     props.active &&
@@ -133,16 +134,16 @@ class Header extends Component {
       activeSearch: false
     };
     this.scrollY = 0;
-    this.onScrollHandler = throttle(this.scrollHandle.bind(this), 100);
+    // this.onScrollHandler = throttle(this.scrollHandle.bind(this), 100);
     this.searchBox = undefined;
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.onScrollHandler);
+    // window.addEventListener("scroll", this.onScrollHandler);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScrollHandler);
+    // window.removeEventListener("scroll", this.onScrollHandler);
   }
 
   toggleSearch() {
@@ -203,9 +204,6 @@ class Header extends Component {
                 color="#607d8b"
                 onClick={this.toggleSearch.bind(this)}
               />
-              <Button href="/rss.xml" style={{ marginLeft: "0.5rem" }}>
-                subscribe
-              </Button>
             </Buttons>
           </HeaderContent>
           <HeaderSearchBox active={this.state.activeSearch}>

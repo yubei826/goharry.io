@@ -1,18 +1,12 @@
 {
   "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "description": "goharry.io",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Harry <housne@gmail.com>",
   "dependencies": {
     "gatsby": "^1.9.158",
     "gatsby-link": "^1.6.34",
-    "gatsby-plugin-algolia": "^0.0.3",
-    "gatsby-plugin-google-analytics": "^1.0.17",
-    "gatsby-plugin-netlify-cms": "^1.0.5",
-    "gatsby-plugin-react-helmet": "^2.0.3",
-    "gatsby-plugin-sitemap": "^1.2.11",
-    "gatsby-plugin-styled-components": "^2.0.5",
-    "gatsby-remark-copy-linked-files": "^1.5.25",
+    "jsonp": "^0.2.1",
     "lodash.throttle": "^4.1.1",
     "qs": "^6.5.1",
     "react-helmet": "^5.2.0",
@@ -44,6 +38,13 @@
     "gatsby-remark-prismjs": "^1.2.12",
     "gatsby-source-filesystem": "^1.5.15",
     "gatsby-transformer-remark": "^1.7.30",
+    "gatsby-plugin-algolia": "^0.0.3",
+    "gatsby-plugin-google-analytics": "^1.0.17",
+    "gatsby-plugin-netlify-cms": "^1.0.5",
+    "gatsby-plugin-react-helmet": "^2.0.3",
+    "gatsby-plugin-sitemap": "^1.2.11",
+    "gatsby-plugin-styled-components": "^2.0.5",
+    "gatsby-remark-copy-linked-files": "^1.5.25",
     "prettier": "^1.10.2"
   }
 }

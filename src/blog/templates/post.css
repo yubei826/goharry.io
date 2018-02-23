@@ -227,3 +227,11 @@
  pre .line-highlight {
    margin-top: 0;
  }
+
+@media (max-width: 700px) { 
+  a.gatsby-resp-image-link {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
+

@@ -3,12 +3,13 @@ import styled from "styled-components";
 import "./post.css";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
-import Disqus from "../../components/Disqus";
+// import Disqus from "../../components/Disqus";
 import PostNavigation from "../../components/PostNavigation";
 import MasterHeader from "../../components/MasterHeader";
 import Content from "../../components/Content";
 import Button from "../../components/Button";
 import Share from "../../components/Share";
+import SubscribeForm from "../../components/Subscribe";
 
 const PostDate = styled.time`
   color: #999;
@@ -71,8 +72,12 @@ const PostContent = styled.div`
     padding: 0 0.3rem;
     border-radius: 2px;
   }
-  img {
-    max-width: 100%;
+  @media (max-width: 700px) {
+    img {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      width: calc(100% + 2rem);
+    }
   }
 `;
 
@@ -128,12 +133,13 @@ export default function PostTemplate({
             title={frontmatter.title}
           />
         </PostMeta>
-        <PostNavigation {...pathContext} />
-        <Disqus
+        {/* <Disqus
           title={frontmatter.title}
           identifier={fields.slug.replace("/")}
           shortname={site.siteMetadata.disqusShortName}
-        />
+        /> */}
+        <SubscribeForm />
+        <PostNavigation {...pathContext} />
       </Content>
     </Post>
   );

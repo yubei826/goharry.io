@@ -9,6 +9,7 @@ const PoweredByIcon = styled.div`
 const PoweredByBox = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-top: 2rem;
 `;
 
 export default ({ url }) => (
