@@ -471,3 +471,11 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+input {
+  appearance: none;
+}
+
+input[type=text] {
+  appearance: none;
+}

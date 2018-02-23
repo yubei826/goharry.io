@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const DisqusComment = styled.div`
   padding-top: 1rem;
-  margin-bottom: -1.5rem;
 `;
 
 export default class DisqusThreadComponent extends PureComponent {
