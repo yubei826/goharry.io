@@ -14,7 +14,7 @@ export default class DisqusThreadComponent extends PureComponent {
     this.active = false;
     this.el = undefined;
     this.eventAttached = false;
-    this.onScrollHandle = throttle(this.scrollHandle.bind(this), 100);
+    this.onScrollHandle = throttle(this.scrollHandle.bind(this), 300);
   }
 
   static propTypes = {
