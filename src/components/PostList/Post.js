@@ -33,6 +33,7 @@ const PostLink = styled(Link)`
 const Excerpt = styled.div`
   color: #999;
   line-height: 1.7;
+  text-align: justify;
   em {
     color: #f57f17;
     font-style: normal;

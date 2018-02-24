@@ -35,6 +35,7 @@ const PostContent = styled.div`
   p {
     line-height: 1.7;
     word-break: break-word;
+    text-align: justify;
   }
   h1,
   h2,

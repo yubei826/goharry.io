@@ -4,8 +4,52 @@
  * @author Tim  Shedor
  */
 
+.gatsby-highlight {
+  padding-top: 30px;
+  background:#ECEFF1;
+  position: relative;
+  border-radius: 4px;
+}
+
+.gatsby-highlight:before {
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: rgb(255, 97, 89);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  border-radius: 50%;
+}
+
+.gatsby-highlight:after {
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: rgb(255, 193, 46);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: 9px;
+  left: 32px;
+  border-radius: 50%;
+}
+
+pre[class*="language-"]:before {
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: rgb(44, 206, 66);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  position: absolute;
+  top: -21px;
+  left: 54px;
+  border-radius: 50%;
+}
+
  code[class*="language-"],
  pre[class*="language-"] {
+   margin-top: 0;
    color: black;
    background: none;
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -29,7 +73,6 @@
  /* Code blocks */
  pre[class*="language-"] {
    position: relative;
-   margin: .5em 0;
    overflow: visible;
    padding: 0;
  }
@@ -38,7 +81,6 @@
    font-family: consolas,monaco,"Andale Mono",monospace;
    font-size: 14px;
    position: relative;
-   border-left: 5px solid #607D8B;
    background-color:rgba(236, 239, 241, 0.4);
    /* background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.08) 50%); */
    background-size: 3em 3em;
@@ -47,6 +89,7 @@
    padding: 0.5rem;
    overflow: auto;
    border-radius: 0;
+   border-radius: 0 0 4px 4px;
  }
  
  code[class*="language"] {
