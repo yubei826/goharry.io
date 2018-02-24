@@ -54,7 +54,7 @@ const Menu = styled.nav`
 const NavLink = styled(Link)`
   color: #333;
   display: inline-flex;
-  height: 52px;
+  height: 51px;
   align-items: center;
   font-size: 1rem;
   font-weight: 500;
