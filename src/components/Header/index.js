@@ -108,9 +108,9 @@ const HeaderSearchBox = styled.div`
     `};
 `;
 
-const CancelButton = styled(Button)`
+const SearchButton = styled(Button)`
   opacity: 0;
-  transition: all 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
   height: 28px;
   transform: scale(0);
   ${props =>
@@ -152,6 +152,12 @@ class Header extends Component {
         this.searchBox.focus();
       }
     });
+  }
+
+  search(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.searchBox.search();
   }
 
   scrollHandle() {
@@ -213,12 +219,12 @@ class Header extends Component {
                 ref={searchBox => (this.searchBox = searchBox)}
               />
             </SearchForm>
-            <CancelButton
+            <SearchButton
               active={this.state.activeSearch}
               onClick={this.toggleSearch.bind(this)}
             >
-              cancel
-            </CancelButton>
+              Cancel
+            </SearchButton>
           </HeaderSearchBox>
         </div>
       </HeaderWrapper>

@@ -472,6 +472,10 @@ a {
   flex-direction: column;
 }
 
+textarea {
+  appearance: none;
+}
+
 input {
   appearance: none;
 }

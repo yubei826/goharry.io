@@ -41,9 +41,12 @@ export default class SearchBox extends PureComponent {
     const query = target.value;
     this.setState({ query });
   }
+  search() {
+    navigateTo(`/search?q=${this.state.query}`);
+  }
   submitHandle(e) {
     e.preventDefault();
-    navigateTo(`/search?q=${this.state.query}`);
+    this.search();
   }
   focus() {
     this.input.focus();
