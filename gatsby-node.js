@@ -58,7 +58,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
     const edges = result.data.allMarkdownRemark.edges;
 
-    createPagination(createPage, edges, "src/blog/templates/index.js", {}, 10);
+    createPagination(createPage, edges, "src/blog/templates/index.js");
 
     createPosts(createPage, edges);
 
@@ -148,7 +148,7 @@ const createTagPages = (createPage, edges) => {
       tag.posts,
       `src/blog/templates/tags.js`,
       { tags, tag: tag.tag },
-      1,
+      10,
       `tags/${tag.tag.slug}`
     );
     // createPage({
