@@ -2,6 +2,7 @@ import React from "react";
 import GatsbyLink from "gatsby-link";
 import PostList from "../../components/PostList";
 import styled from "styled-components";
+import Pagination from "../../components/Pagination";
 
 const TagHeader = styled.div`
   background: #eceff1;
@@ -9,7 +10,8 @@ const TagHeader = styled.div`
 `;
 
 export default function Tags({ pathContext }) {
-  const { tags, posts, tag } = pathContext;
+  const { tags, group, tag } = pathContext;
+  const posts = group;
   if (tag) {
     const postListData = posts
       .filter(node => !!node.frontmatter.date) // You can filter your posts based on some criteria
@@ -25,13 +27,13 @@ export default function Tags({ pathContext }) {
         <TagHeader>
           <div className="content">
             <h1 style={{ margin: 0, fontSize: "1.8rem" }}>
-              {posts.length} post{posts.length === 1 ? "" : "s"} tagged with{" "}
-              {tag.name}
+              posts tagged with {tag.name}
             </h1>
           </div>
         </TagHeader>
         <PostList posts={postListData} />
         {/* <GatsbyLink to="/tags">All tags</GatsbyLink> */}
+        <Pagination {...pathContext} />
       </div>
     );
   }

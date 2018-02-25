@@ -13,7 +13,7 @@ export const ButtonComponent = styled.button`
   border-radius: 3px;
   background: transparent;
   color: #607d8b;
-  border: solid 1px #607d8b;
+  border: solid 1px #ddd;
   box-sizing: border-box;
   outline: 0;
   cursor: pointer;
@@ -41,10 +41,13 @@ export const ButtonComponent = styled.button`
     `};
   &:hover {
     background: ${props =>
-      props.disabled || props.processing ? "transparent" : "#607d8b"};
+      props.disabled || props.processing
+        ? "transparent"
+        : "rgba(236, 239, 241, 0.6)"};
     border-color: ${props =>
+      props.disabled || props.processing ? "#999" : "#ddd"};
+    color: ${props =>
       props.disabled || props.processing ? "#999" : "#607d8b"};
-    color: ${props => (props.disabled || props.processing ? "#999" : "#fff")};
   }
 `;
 

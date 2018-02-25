@@ -8,6 +8,7 @@
 
 const path = require("path");
 var crypto = require("crypto");
+const createPaginatedPages = require("./pagination");
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   const { createNodeField } = boundActionCreators;
@@ -57,11 +58,31 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
     const edges = result.data.allMarkdownRemark.edges;
 
+    createPagination(createPage, edges, "src/blog/templates/index.js", {}, 10);
+
     createPosts(createPage, edges);
 
     createTagPages(createPage, edges);
   });
 };
+
+function createPagination(
+  createPage,
+  edges,
+  template,
+  context = {},
+  pageLength = 10,
+  pathPrefix = ""
+) {
+  createPaginatedPages({
+    edges,
+    createPage,
+    pageLength,
+    context,
+    pathPrefix,
+    pageTemplate: template
+  });
+}
 
 function createPosts(createPage, edges) {
   const blogPostTemplate = path.resolve(`src/blog/templates/post.js`);
@@ -122,15 +143,23 @@ const createTagPages = (createPage, edges) => {
   // For each of the tags in the post object, create a tag page.
 
   allTags.forEach((tag, key) => {
-    createPage({
-      path: `/tags/${tag.tag.slug}`,
-      component: tagTemplate,
-      context: {
-        tags,
-        tag: tag.tag,
-        posts: tag.posts
-      }
-    });
+    createPagination(
+      createPage,
+      tag.posts,
+      `src/blog/templates/tags.js`,
+      { tags, tag: tag.tag },
+      1,
+      `tags/${tag.tag.slug}`
+    );
+    // createPage({
+    //   path: `/tags/${tag.tag.slug}`,
+    //   component: tagTemplate,
+    //   context: {
+    //     tags,
+    //     tag: tag.tag,
+    //     posts: tag.posts
+    //   }
+    // });
   });
 };
 
