@@ -28,24 +28,23 @@ export const ButtonComponent = styled.button`
   ${props =>
     (props.disabled || props.processing) &&
     css`
-      border-color: #999;
       color: #999;
       cursor: default;
     `};
   ${props =>
     props.block &&
     css`
-      height: 38px;
+      height: 42px;
       display: flex;
       width: 100%;
+      justify-content: center;
+      text-align: center;
     `};
   &:hover {
     background: ${props =>
       props.disabled || props.processing
         ? "transparent"
         : "rgba(236, 239, 241, 0.6)"};
-    border-color: ${props =>
-      props.disabled || props.processing ? "#999" : "#ddd"};
     color: ${props =>
       props.disabled || props.processing ? "#999" : "#607d8b"};
   }
@@ -55,6 +54,7 @@ const ButtonChildren = styled.span`
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const LoadingIndicatorBox = styled.span`

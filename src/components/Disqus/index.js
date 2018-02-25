@@ -2,14 +2,42 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
 import styled from "styled-components";
+import Button from "../Button";
 
 const DisqusComment = styled.div`
   padding-top: 1rem;
 `;
 
+const CommentPlaceHolder = styled.div`
+  margin-top: 1.5rem;
+  padding-bottom: 1rem;
+  display: flex;
+`;
+
+const ErrorTip = styled.div`
+  color: #999;
+`;
+
+const ErrorMessage = styled.div`
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: red;
+    top: -5px;
+    left: 0;
+    width: 2rem;
+  }
+`;
+
 export default class DisqusThreadComponent extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      active: false,
+      errMessage: ""
+    };
     this.active = false;
     this.el = undefined;
     this.eventAttached = false;
@@ -23,18 +51,23 @@ export default class DisqusThreadComponent extends PureComponent {
   };
 
   componentDidMount() {
-    if (this.isInViewport()) {
-      this.loadScript();
-      return;
-    }
-    window.addEventListener("scroll", this.onScrollHandle);
-    this.eventAttached = true;
+    // if (this.isInViewport()) {
+    //   this.loadScript();
+    //   return;
+    // }
+    // window.addEventListener("scroll", this.onScrollHandle);
+    // this.eventAttached = true;
   }
 
   componentWillUnmount() {
-    if (this.eventAttached) {
-      window.removeEventListener("scroll", this.onScrollHandle);
-    }
+    // if (this.eventAttached) {
+    //   window.removeEventListener("scroll", this.onScrollHandle);
+    // }
+  }
+
+  activeComment() {
+    this.setState({ active: true });
+    this.loadScript();
   }
 
   scrollHandle() {
@@ -70,6 +103,7 @@ export default class DisqusThreadComponent extends PureComponent {
       const script = document.createElement("script");
       script.src = `//${config.shortname}.disqus.com/embed.js`;
       script.setAttribute("data-timestamp", +new Date());
+      script.onerror = () => this.setState({ errMessage: "Network Error" });
       document.body.appendChild(script);
     } else {
       window.DISQUS.reset({
@@ -86,7 +120,25 @@ export default class DisqusThreadComponent extends PureComponent {
   render() {
     return (
       <DisqusComment innerRef={el => (this.el = el)}>
-        <div id="disqus_thread" />
+        <div id="disqus_thread">
+          <CommentPlaceHolder>
+            {this.state.active && this.state.errMessage ? (
+              <ErrorMessage>
+                {this.state.errMessage}
+                <ErrorTip>Caution: Disqus is unavailable in China</ErrorTip>
+              </ErrorMessage>
+            ) : (
+              <Button
+                size="large"
+                onClick={this.activeComment.bind(this)}
+                processing={this.state.active}
+                block
+              >
+                Start Discuss
+              </Button>
+            )}
+          </CommentPlaceHolder>
+        </div>
       </DisqusComment>
     );
   }
