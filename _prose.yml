@@ -1,0 +1,21 @@
+prose:
+  siteurl: "https://goharry.io"
+  media: "src/blog/posts/images"
+  metadata:
+    src/blog/posts:
+      - name: title
+        field:
+          element: "text"
+          label: "Title"
+          placeholder: "Enter Post Title"
+      - name: date
+        field:
+          element: "text"
+          label: "Date"
+          placeholder: "Publish Date"
+          value: CURRENT_DATETIME
+      - name: tags
+        field:
+          element: "text"
+          label: "Tags"
+          placeholder: "use , to separate more than one tag"
