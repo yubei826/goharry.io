@@ -1,6 +1,7 @@
 prose:
   siteurl: "https://goharry.io"
   media: "src/blog/posts/images"
+  raw_title: true
   metadata:
     src/blog/posts:
       - name: "title"
