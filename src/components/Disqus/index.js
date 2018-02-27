@@ -42,6 +42,7 @@ export default class DisqusThreadComponent extends PureComponent {
     this.el = undefined;
     this.eventAttached = false;
     this.onScrollHandle = throttle(this.scrollHandle.bind(this), 300);
+    this.scriptTimeoutTimer = null;
   }
 
   static propTypes = {
@@ -63,6 +64,9 @@ export default class DisqusThreadComponent extends PureComponent {
     // if (this.eventAttached) {
     //   window.removeEventListener("scroll", this.onScrollHandle);
     // }
+    if (this.scriptTimeoutTimer) {
+      clearTimeout(this.scriptTimeoutTimer);
+    }
   }
 
   activeComment() {
@@ -103,8 +107,16 @@ export default class DisqusThreadComponent extends PureComponent {
       const script = document.createElement("script");
       script.src = `//${config.shortname}.disqus.com/embed.js`;
       script.setAttribute("data-timestamp", +new Date());
-      script.onerror = () => this.setState({ errMessage: "Network Error" });
+      script.onerror = () => {
+        clearTimeout(this.scriptTimeoutTimer);
+        if (!this.state.errMessage)
+          this.setState({ errMessage: "Network Error" });
+      };
+      script.onload = () => clearTimeout(this.scriptTimeoutTimer);
       document.body.appendChild(script);
+      this.scriptTimeoutTimer = setTimeout(() => {
+        this.setState({ errMessage: "Timeout" });
+      }, 1000 * 10);
     } else {
       window.DISQUS.reset({
         reload: true,
