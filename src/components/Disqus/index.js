@@ -36,7 +36,8 @@ export default class DisqusThreadComponent extends PureComponent {
     super(props);
     this.state = {
       active: false,
-      errMessage: ""
+      errMessage: "",
+      reset: false
     };
     this.active = false;
     this.el = undefined;
@@ -126,6 +127,7 @@ export default class DisqusThreadComponent extends PureComponent {
           this.page.title = config.title;
         }
       });
+      this.setState({ reset: true });
     }
   }
 
@@ -133,23 +135,25 @@ export default class DisqusThreadComponent extends PureComponent {
     return (
       <DisqusComment innerRef={el => (this.el = el)}>
         <div id="disqus_thread">
-          <CommentPlaceHolder>
-            {this.state.active && this.state.errMessage ? (
-              <ErrorMessage>
-                {this.state.errMessage}
-                <ErrorTip>Caution: Disqus is unavailable in China</ErrorTip>
-              </ErrorMessage>
-            ) : (
-              <Button
-                size="large"
-                onClick={this.activeComment.bind(this)}
-                processing={this.state.active}
-                block
-              >
-                Start Discuss
-              </Button>
-            )}
-          </CommentPlaceHolder>
+          {!this.state.reset && (
+            <CommentPlaceHolder>
+              {this.state.active && this.state.errMessage ? (
+                <ErrorMessage>
+                  {this.state.errMessage}
+                  <ErrorTip>Caution: Disqus is unavailable in China</ErrorTip>
+                </ErrorMessage>
+              ) : (
+                <Button
+                  size="large"
+                  onClick={this.activeComment.bind(this)}
+                  processing={this.state.active}
+                  block
+                >
+                  Start Discuss
+                </Button>
+              )}
+            </CommentPlaceHolder>
+          )}
         </div>
       </DisqusComment>
     );
