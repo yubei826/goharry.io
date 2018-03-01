@@ -1,59 +1,35 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import "./index.css";
+import Header from '../components/Header'
+import './index.css'
 
-const Wrapper = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Content = styled.div`
-  padding-top: 52px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const TemplateWrapper = ({ children, data }) => {
-  const { siteMetadata } = data.site;
-  return (
-    <Wrapper>
-      <Content>
-        <Helmet
-          title={siteMetadata.title}
-          meta={[
-            { name: "description", content: siteMetadata.description },
-            { name: "keywords", content: siteMetadata.keywords.join(", ") }
-          ]}
-        />
-        <Header {...siteMetadata} />
-        {children()}
-      </Content>
-      <Footer {...siteMetadata} />
-    </Wrapper>
-  );
-};
+const TemplateWrapper = ({ children }) => (
+  <div>
+    <Helmet
+      title="Gatsby Default Starter"
+      meta={[
+        { name: 'description', content: 'Sample' },
+        { name: 'keywords', content: 'sample, something' },
+      ]}
+    />
+    <Header />
+    <div
+      style={{
+        margin: '0 auto',
+        maxWidth: 960,
+        padding: '0px 1.0875rem 1.45rem',
+        paddingTop: 0,
+      }}
+    >
+      {children()}
+    </div>
+  </div>
+)
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
-};
+  children: PropTypes.func,
+}
 
-export default TemplateWrapper;
-
-export const pageQuery = graphql`
-  query SiteQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        keywords
-      }
-    }
-  }
-`;
+export default TemplateWrapper

@@ -1,20 +1,15 @@
 {
   "name": "gatsby-starter-default",
-  "description": "goharry.io",
+  "description": "Gatsby default starter",
   "version": "1.0.0",
-  "author": "Harry <housne@gmail.com>",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "enum": "^2.5.0",
-    "gatsby": "^1.9.212",
-    "gatsby-link": "^1.6.34",
-    "jsonp": "^0.2.1",
-    "lodash.throttle": "^4.1.1",
-    "qs": "^6.5.1",
-    "react-helmet": "^5.2.0",
-    "react-instantsearch": "^4.5.1",
-    "react-loading-indicator": "^1.0.2",
-    "styled-components": "^3.0.2",
-    "uuid": "^3.2.1"
+    "gatsby": "^1.9.215",
+    "gatsby-link": "^1.6.37",
+    "gatsby-plugin-react-helmet": "^2.0.5",
+    "gatsby-source-filesystem": "^1.5.24",
+    "gatsby-transformer-json": "^1.0.15",
+    "react-helmet": "^5.2.0"
   },
   "keywords": [
     "gatsby"
@@ -28,23 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "gatsby-plugin-algolia": "^0.0.3",
-    "gatsby-plugin-catch-links": "^1.0.15",
-    "gatsby-plugin-feed": "^1.3.16",
-    "gatsby-plugin-google-analytics": "^1.0.17",
-    "gatsby-plugin-netlify": "^1.0.16",
-    "gatsby-plugin-nprogress": "^1.0.11",
-    "gatsby-plugin-offline": "^1.0.13",
-    "gatsby-plugin-react-helmet": "^2.0.3",
-    "gatsby-plugin-remove-trailing-slashes": "^1.0.4",
-    "gatsby-plugin-sharp": "^1.6.27",
-    "gatsby-plugin-sitemap": "^1.2.11",
-    "gatsby-plugin-styled-components": "^2.0.5",
-    "gatsby-remark-copy-linked-files": "^1.5.25",
-    "gatsby-remark-images": "^1.5.41",
-    "gatsby-remark-prismjs": "^1.2.12",
-    "gatsby-source-filesystem": "^1.5.15",
-    "gatsby-transformer-remark": "^1.7.30",
     "prettier": "^1.10.2"
   }
 }
