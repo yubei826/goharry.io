@@ -9,6 +9,14 @@ import TextBox from "../components/TextBox";
 import DownloadLink from "../components/DownloadLink";
 import Container from "../components/Container";
 
+const DownloadBox = styled.div`
+  text-align: center;
+  padding-bottom: 2rem;
+  @media (min-width: 700px) {
+    padding-left: 25%;
+  }
+`;
+
 const IndexPage = ({ data }) => {
   const resumes = data.allDataJson.edges;
   const resume = resumes.find(r => r.node.language === "zh");
@@ -53,15 +61,9 @@ const IndexPage = ({ data }) => {
         ))}
       </Section>
       <Container>
-        <div
-          style={{
-            textAlign: "center",
-            paddingBottom: "2rem",
-            paddingLeft: "25%"
-          }}
-        >
+        <DownloadBox>
           <DownloadLink />
-        </div>
+        </DownloadBox>
       </Container>
     </div>
   );
