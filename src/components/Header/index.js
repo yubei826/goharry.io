@@ -1,33 +1,52 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react";
+import Link from "gatsby-link";
+import styled from "styled-components";
+import Container from "../Container";
+import DownloadLink from "../DownloadLink";
 
-const Header = () => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          Gatsby
-        </Link>
-      </h1>
-    </div>
-  </div>
-)
+const HeaderWrapper = styled.div`
+  background: #eceff1;
+  padding: 3rem 0;
+`;
 
-export default Header
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+  @media (min-width: 700px) {
+    padding-left: 25%;
+  }
+`;
+
+const Name = styled.h1`
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: 0;
+`;
+
+const Label = styled.h2`
+  font-size: 1.6rem;
+  color: #90a4ae;
+  font-weight: 400;
+  margin-bottom: 0;
+`;
+
+const Title = styled.div`
+  flex: 1;
+`;
+
+const Header = ({ name, label }) => (
+  <HeaderWrapper>
+    <Container>
+      <Content>
+        <Title>
+          <Name>{name}</Name>
+          <Label>{label}</Label>
+        </Title>
+        <DownloadLink />
+      </Content>
+    </Container>
+  </HeaderWrapper>
+);
+
+export default Header;

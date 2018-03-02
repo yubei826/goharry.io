@@ -62,9 +62,9 @@
       ]
     }
   ],
-  "volunteer": [
+  "projects": [
     {
-      "organization": "重金所",
+      "name": "重金所",
       "position": "前端开发",
       "website": "http://www.cqfae.com/",
       "startDate": "2016-09-01",
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "organization": "云筹移动端",
+      "name": "云筹移动端",
       "position": "前端开发",
       "website": "http://m.yunchou.com/",
       "startDate": "2015-08-01",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "organization": "云筹网",
+      "name": "云筹网",
       "position": "前端开发",
       "website": "http://www.yunchou.com/",
       "startDate": "2015-07-01",
