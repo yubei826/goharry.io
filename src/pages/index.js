@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Record from "../components/Record";
 import TextBox from "../components/TextBox";
 import DownloadLink from "../components/DownloadLink";
+import Container from "../components/Container";
 
 const IndexPage = ({ data }) => {
   const resumes = data.allDataJson.edges;
@@ -29,8 +30,8 @@ const IndexPage = ({ data }) => {
       </Section>
       <Section title="社交网络">
         <List>
-          {basics.profiles.map(profile => (
-            <Item label={profile.network}>
+          {basics.profiles.map((profile, idx) => (
+            <Item label={profile.network} key={idx}>
               <a href={profile.url}>{profile.username}</a>
             </Item>
           ))}
@@ -51,9 +52,17 @@ const IndexPage = ({ data }) => {
           <Record {...e} title={e.institution} key={index} position={e.area} />
         ))}
       </Section>
-      <div style={{ textAlign: "center", paddingBottom: "2rem" }}>
-        <DownloadLink />
-      </div>
+      <Container>
+        <div
+          style={{
+            textAlign: "center",
+            paddingBottom: "2rem",
+            paddingLeft: "25%"
+          }}
+        >
+          <DownloadLink />
+        </div>
+      </Container>
     </div>
   );
 };
