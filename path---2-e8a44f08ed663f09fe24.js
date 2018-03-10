@@ -1,0 +1,2 @@
+webpackJsonp([0x8f0ce58d3892],{630:function(a,e){a.exports={pathContext:{group:[{node:{excerpt:"工作中少不了跟 ajax 打交道，本着少造轮子的思想，一般都是使用 jquery 的 ajax 接口，同域的 ajax 大家都知道是通过 xhr(XMLHttpRequest) 请求完成， 在jquery 中，jsonp…",fields:{slug:"/8d76e7d06e",tags:[{name:"javascript",slug:"de9b9ed78d"},{name:"jsonp",slug:"8a8604b628"},{name:"ajax",slug:"2705a83a5a"}]},frontmatter:{path:"/principle-of-jsonp",title:"jsonp 原理",date:"2014-05-13T00:00:00.000Z"}}}],pathPrefix:"",first:!1,last:!0,index:2,pageCount:2}}}});
+//# sourceMappingURL=path---2-e8a44f08ed663f09fe24.js.map
