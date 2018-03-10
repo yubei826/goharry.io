@@ -1,0 +1,23 @@
+language: node_js
+
+node_js: stable
+
+install:
+  - npm install
+
+script:
+  - rm -rf ./public
+  - npm run build
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "harry"
+  - git config user.email "housne@gmail.com"
+  - git add .
+  - git commit -m "update site"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_HREF}" master:master
+
+branches:
+  only:
+    - source
