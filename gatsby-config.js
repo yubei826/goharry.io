@@ -54,6 +54,14 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/_data`,
+        name: "staticman-data"
+      }
+    },
+    `gatsby-transformer-yaml`,
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
