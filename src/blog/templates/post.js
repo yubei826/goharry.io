@@ -10,6 +10,7 @@ import Content from "../../components/Content";
 import Button from "../../components/Button";
 import Share from "../../components/Share";
 import SubscribeForm from "../../components/Subscribe";
+import CommentForm from "../../components/Comment/form";
 
 const PostDate = styled.time`
   color: #999;
@@ -138,7 +139,7 @@ export default function PostTemplate({
         <PostNavigation {...pathContext} />
         <Disqus
           title={frontmatter.title}
-          identifier={fields.slug.replace("/")}
+          identifier={fields.slug.replace("/", "")}
           shortname={site.siteMetadata.disqusShortName}
         />
       </Content>
