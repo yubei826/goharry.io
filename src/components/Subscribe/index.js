@@ -17,6 +17,7 @@ const SubscribeInput = styled.input`
   margin-right: 1rem;
   padding: 0 0.5rem;
   outline: 0;
+  width: 100px;
   &:focus {
     border-color: #607d8b;
   }
