@@ -4,7 +4,7 @@ export default function CommentForm({ slug }) {
   return (
     <form
       method="POST"
-      action="https://api.staticman.net/v2/entry/housne/goharry.io/source"
+      action="https://api.staticman.net/v2/entry/housne/goharry.io/source/comments"
     >
       <input name="options[slug]" type="hidden" value={slug} />
       <label>

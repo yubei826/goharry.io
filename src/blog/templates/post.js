@@ -143,6 +143,7 @@ export default function PostTemplate({
           shortname={site.siteMetadata.disqusShortName}
         />
       </Content>
+      <CommentForm slug={fields.slug.replace("/", "")} />
     </Post>
   );
 }
