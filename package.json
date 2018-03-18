@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "author": "Harry <housne@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "enum": "^2.5.0",
+    "form-serialize": "^0.7.2",
     "gatsby": "^1.9.212",
     "gatsby-link": "^1.6.34",
     "gatsby-transformer-yaml": "^1.5.16",

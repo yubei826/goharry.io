@@ -10,7 +10,7 @@ import Content from "../../components/Content";
 import Button from "../../components/Button";
 import Share from "../../components/Share";
 import SubscribeForm from "../../components/Subscribe";
-import CommentForm from "../../components/Comment/form";
+import PostComments from "../../components/Comment/comment";
 
 const PostDate = styled.time`
   color: #999;
@@ -102,7 +102,8 @@ export default function PostTemplate({
   pathContext,
   ...props
 }) {
-  const { markdownRemark, site } = data; // data.markdownRemark holds our post data
+  console.log(data);
+  const { markdownRemark, site, allCommentsYaml } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
   return (
     <Post>
@@ -143,7 +144,10 @@ export default function PostTemplate({
           shortname={site.siteMetadata.disqusShortName}
         />
       </Content>
-      <CommentForm slug={fields.slug.replace("/", "")} />
+      <PostComments
+        comments={allCommentsYaml.edges.map(edge => edge.node)}
+        slug={fields.slug}
+      />
     </Post>
   );
 }
@@ -170,6 +174,18 @@ export const pageQuery = graphql`
       siteMetadata {
         disqusShortName
         siteUrl
+      }
+    }
+    allCommentsYaml(filter: { slug: { eq: $slug } }) {
+      edges {
+        node {
+          _id
+          name
+          email
+          message
+          date
+          slug
+        }
       }
     }
   }
