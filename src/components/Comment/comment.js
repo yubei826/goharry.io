@@ -26,18 +26,15 @@ export default class PostComment extends Component {
 
   addComment(comment) {
     this.setState({ comments: this.state.comments.concat(comment) });
+    if (this.state.replyId) {
+      this.replyHandle();
+    }
   }
 
   render() {
     const { replyId } = this.state;
     return (
       <div>
-        {!replyId && (
-          <CommentForm
-            slug={this.props.slug}
-            addComment={this.addComment.bind(this)}
-          />
-        )}
         <CommentList
           comments={this.state.comments}
           reply={this.replyHandle.bind(this)}
@@ -51,6 +48,12 @@ export default class PostComment extends Component {
             />
           )}
         />
+        {!replyId && (
+          <CommentForm
+            slug={this.props.slug}
+            addComment={this.addComment.bind(this)}
+          />
+        )}
       </div>
     );
   }

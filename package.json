@@ -5,6 +5,7 @@
   "author": "Harry <housne@gmail.com>",
   "dependencies": {
     "axios": "^0.18.0",
+    "dateformat": "^3.0.3",
     "enum": "^2.5.0",
     "form-serialize": "^0.7.2",
     "gatsby": "^1.9.212",

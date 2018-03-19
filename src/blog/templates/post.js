@@ -97,14 +97,30 @@ const Tag = styled(Button)`
   margin-right: 0.5rem;
 `;
 
+const CommentBox = styled.div`
+  background: rgba(236, 239, 241, 0.4);
+  padding: 2rem 0;
+  border-top: solid 1px #ddd;
+  margin-top: 1.5rem;
+  margin-bottom: -2rem;
+`;
+
+const CommentLabel = styled.h4`
+  margin: 0;
+  padding-bottom: 2rem;
+  line-height: 1;
+`;
+
 export default function PostTemplate({
   data, // this prop will be injected by the GraphQL query below.
   pathContext,
   ...props
 }) {
-  console.log(data);
   const { markdownRemark, site, allCommentsYaml } = data; // data.markdownRemark holds our post data
   const { frontmatter, html, fields, excerpt } = markdownRemark;
+  const comments = allCommentsYaml
+    ? allCommentsYaml.edges.map(edge => edge.node)
+    : [];
   return (
     <Post>
       <Helmet
@@ -138,16 +154,20 @@ export default function PostTemplate({
         </PostMeta>
         <SubscribeForm />
         <PostNavigation {...pathContext} />
-        <Disqus
+        {/* <Disqus
           title={frontmatter.title}
           identifier={fields.slug.replace("/", "")}
           shortname={site.siteMetadata.disqusShortName}
-        />
+        /> */}
       </Content>
-      <PostComments
-        comments={allCommentsYaml.edges.map(edge => edge.node)}
-        slug={fields.slug}
-      />
+      {(!frontmatter.comment || frontmatter.comment !== "closed") && (
+        <CommentBox>
+          <Content>
+            <CommentLabel>COMMENTS({comments.length})</CommentLabel>
+            <PostComments comments={comments} slug={fields.slug} />
+          </Content>
+        </CommentBox>
+      )}
     </Post>
   );
 }

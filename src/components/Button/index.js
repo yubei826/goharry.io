@@ -55,6 +55,7 @@ const ButtonChildren = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 `;
 
 const LoadingIndicatorBox = styled.span`
