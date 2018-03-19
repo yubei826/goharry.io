@@ -205,6 +205,7 @@ export const pageQuery = graphql`
           message
           date
           slug
+          _parent
         }
       }
     }

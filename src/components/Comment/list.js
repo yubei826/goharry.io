@@ -6,19 +6,30 @@ const CommentList = styled.div`
   background: transparent;
 `;
 
+const EmptyList = styled.div`
+  padding: 3rem 0 5rem;
+  text-align: center;
+  color: #999;
+  font-size: 1.4rem;
+`;
+
 export default function Comments({ comments, replyId, slug, reply, form }) {
   return (
     <CommentList>
-      {formatCommentsData(comments).map(comment => (
-        <Comment
-          comment={comment}
-          key={comment._id || comment.date}
-          replyId={replyId}
-          slug={slug}
-          reply={reply}
-          form={form}
-        />
-      ))}
+      {!comments.length ? (
+        <EmptyList>No comments yet!</EmptyList>
+      ) : (
+        formatCommentsData(comments).map(comment => (
+          <Comment
+            comment={comment}
+            key={comment._id || comment.date}
+            replyId={replyId}
+            slug={slug}
+            reply={reply}
+            form={form}
+          />
+        ))
+      )}
     </CommentList>
   );
 }
@@ -44,11 +55,6 @@ const CommentText = styled.div`
   line-height: 1.6;
 `;
 
-const CommentAuthor = styled.h4`
-  margin: 0;
-  padding: 0;
-`;
-
 const ReplyButton = styled.button`
   padding: 0;
   margin: 0;
@@ -70,8 +76,12 @@ const ReplyBox = styled.div`
   padding-top: 1rem;
 `;
 
+const CommentHeader = styled.div`
+  padding: 0;
+  color: #999;
+`;
+
 export function Comment({ comment, replyId, slug, reply, form }) {
-  console.log(comment);
   return (
     <CommentItem>
       <Avatar
@@ -79,7 +89,15 @@ export function Comment({ comment, replyId, slug, reply, form }) {
         alt={comment.name}
       />
       <CommentContent>
-        <CommentAuthor>{comment.name}</CommentAuthor>
+        <CommentHeader>
+          <CommentAuthor comment={comment} />
+          {comment.parentNode && (
+            <span>
+              {" "}
+              REPLY TO <CommentAuthor comment={comment.parentNode} />
+            </span>
+          )}
+        </CommentHeader>
         <CommentText>{comment.message}</CommentText>
         <div>
           <CommentDate>
@@ -98,10 +116,25 @@ export function Comment({ comment, replyId, slug, reply, form }) {
   );
 }
 
+const Author = styled.strong`
+  color: #333;
+`;
+
+const AuthorLink = Author.withComponent("a");
+
+function CommentAuthor({ comment }) {
+  if (!comment.url) return <Author>{comment.name}</Author>;
+  return (
+    <AuthorLink href={comment.url}>
+      <strong>{comment.name}</strong>
+    </AuthorLink>
+  );
+}
+
 function formatCommentsData(comments) {
-  return comments.map(comment => {
-    if (!comment.parent) return comment;
-    const parentNode = comments.find(c => c._id === comment.parent);
+  return comments.sort((a, b) => a.date - b.date).map(comment => {
+    if (!comment._parent) return comment;
+    const parentNode = comments.find(c => c._id === comment._parent);
     return {
       ...comment,
       parentNode

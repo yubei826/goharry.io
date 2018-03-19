@@ -46,6 +46,12 @@ const TextArea = styled.textarea`
   }
 `;
 
+const FormTitle = styled.h4`
+  margin: 0;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+`;
+
 const RequestStatusEnum = {
   IDLE: 0,
   PENDING: 1,
@@ -94,6 +100,7 @@ export default class CommentForm extends PureComponent {
         ref={form => (this.form = form)}
         onSubmit={this.submitHandle.bind(this)}
       >
+        {/* <FormTitle>add comment</FormTitle> */}
         <input
           name="options[slug]"
           type="hidden"
@@ -101,7 +108,7 @@ export default class CommentForm extends PureComponent {
         />
         <input name="fields[slug]" type="hidden" value={slug} />
         {replyId && (
-          <input name="fields[parent]" type="hidden" value={replyId} />
+          <input name="fields[_parent]" type="hidden" value={replyId} />
         )}
         <InputGroup>
           <Input name="fields[name]" type="text" required placeholder="name" />
