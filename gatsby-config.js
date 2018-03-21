@@ -67,6 +67,7 @@ module.exports = {
         plugins: [
           `gatsby-plugin-sharp`,
           `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

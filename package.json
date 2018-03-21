@@ -10,6 +10,7 @@
     "form-serialize": "^0.7.2",
     "gatsby": "^1.9.212",
     "gatsby-link": "^1.6.34",
+    "gatsby-remark-autolink-headers": "^1.4.13",
     "gatsby-transformer-yaml": "^1.5.16",
     "jsonp": "^0.2.1",
     "lodash.throttle": "^4.1.1",
