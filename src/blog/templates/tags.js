@@ -3,6 +3,9 @@ import GatsbyLink from "gatsby-link";
 import PostList from "../../components/PostList";
 import styled from "styled-components";
 import Pagination from "../../components/Pagination";
+import Content from "../../components/Content";
+import MasterHeader from "../../components/MasterHeader";
+import Button from "../../components/Button";
 
 const TagHeader = styled.div`
   background: #eceff1;
@@ -11,6 +14,7 @@ const TagHeader = styled.div`
 
 export default function Tags({ pathContext }) {
   const { tags, group, tag } = pathContext;
+  console.log(tags);
   const posts = group;
   if (tag) {
     const postListData = posts
@@ -24,13 +28,9 @@ export default function Tags({ pathContext }) {
       });
     return (
       <div>
-        <TagHeader>
-          <div className="content">
-            <h1 style={{ margin: 0, fontSize: "1.8rem" }}>
-              posts tagged with {tag.name}
-            </h1>
-          </div>
-        </TagHeader>
+        <MasterHeader>
+          <h1 style={{ margin: 0, fontSize: "1.8rem" }}># {tag.name}</h1>
+        </MasterHeader>
         <PostList posts={postListData} />
         {/* <GatsbyLink to="/tags">All tags</GatsbyLink> */}
         <Pagination {...pathContext} />
@@ -39,19 +39,25 @@ export default function Tags({ pathContext }) {
   }
   return (
     <div>
-      <h1>Tags</h1>
-      <ul className="tags">
-        {tags.map(tag => {
-          return (
-            <li key={tag.tag.slug}>
-              <GatsbyLink to={`/tags/${tag.tag.slug}`}>
+      <MasterHeader>
+        <h1 style={{ margin: 0, fontSize: "1.8rem" }}>Tags</h1>
+      </MasterHeader>
+      <Content>
+        <div className="tags" style={{ paddingTop: "2rem" }}>
+          {tags.sort((a, b) => b.posts.length - a.posts.length).map(tag => {
+            return (
+              <Button
+                key={tag.tag.slug}
+                to={`/tags/${tag.tag.slug}`}
+                style={{ margin: "0.5rem 1rem 0.5rem 0" }}
+              >
                 {tag.tag.name}
-                {tag.posts.length}
-              </GatsbyLink>
-            </li>
-          );
-        })}
-      </ul>
+                <sup>{tag.posts.length}</sup>
+              </Button>
+            );
+          })}
+        </div>
+      </Content>
     </div>
   );
 }

@@ -21,12 +21,7 @@ export default function Footer({ title }) {
   return (
     <FooterComponent>
       <div className="content">
-        <FooterContent>
-          &copy;{year} All rights reserved{" "}
-          <Link to="/about" style={{ paddingLeft: 5 }}>
-            about
-          </Link>
-        </FooterContent>
+        <FooterContent>&copy;{year} All rights reserved</FooterContent>
       </div>
     </FooterComponent>
   );

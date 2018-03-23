@@ -203,6 +203,9 @@ class Header extends Component {
               <NavLink to="/contact" activeClassName="active">
                 contact
               </NavLink>
+              <NavLink to="/about" activeClassName="active">
+                about
+              </NavLink>
             </Menu>
             <Buttons>
               <SearchIcon
