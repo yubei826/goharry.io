@@ -3,6 +3,7 @@ title: 冒泡和快排
 date: "2018-03-22"
 tags:
 - algorithm
+- javascript
 ---
 
 冒泡排序和快速排序是两种最常见和基础的排序算法。
